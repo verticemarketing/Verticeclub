@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Vértice Clube • Área exclusiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050506; --panel:#0e0e11; --panel2:#16161b; --line:#25252c; --text:#dcdce1; --muted:#8d8d98; --silver:#e3e5ea;
+  --red:#ff1f2d; --green:#2ecc71; --amber:#f5b942;
+  --font:"Montserrat","Helvetica Neue",Arial,sans-serif; --wide:"Michroma","Montserrat",Arial,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{color-scheme:dark;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--font);min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:80}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+[hidden]{display:none!important}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 560px at 88% 105%,rgba(255,31,45,.22),transparent 65%),radial-gradient(600px 400px at 0 0,rgba(255,31,45,.14),transparent 70%),var(--bg)}
+.bg svg{position:absolute;inset:0;width:100%;height:100%}
+.bg path{fill:none;stroke:#ff1f2d;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-width:2}
+.bg .base path{stroke-opacity:.14}
+.bg .run path{stroke-dasharray:100 900;animation:run 12s linear infinite;animation-delay:var(--d,0s);filter:drop-shadow(0 0 6px #ff1f2d)}
+@keyframes run{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+
+/* botões */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:0;cursor:pointer;font:700 14px/1 var(--font);letter-spacing:.04em;padding:16px 26px 16px 22px;border-radius:4px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 12px 30px -12px rgba(255,31,45,.75);clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.btn:hover{background:#ff3a47;transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn.sm{padding:10px 20px 10px 16px;font-size:12px;box-shadow:none}
+.btn.ghost{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+.btn.ghost:hover{background:#fff;color:#050506}
+.btn.dark{background:#1d1d23;box-shadow:inset 0 0 0 1px #33333b}
+.btn.dark:hover{background:#2a2a32}
+.btn.danger{background:#7d1018}
+.btn.danger:hover{background:#c4101c}
+.btn.block{width:100%}
+.lnk{background:none;border:0;color:#ff6a74;cursor:pointer;font-weight:600;font-size:14px;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+
+/* login */
+.auth{min-height:100vh;display:grid;place-items:center;padding:28px 16px}
+.login{width:min(440px,100%);background:linear-gradient(180deg,rgba(22,22,27,.92),rgba(14,14,17,.92));border:1px solid #2a2a31;border-radius:8px;padding:38px 32px 30px;box-shadow:0 40px 90px -30px #000,0 0 0 1px rgba(255,31,45,.12);backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.login::before{content:"";position:absolute;left:0;top:0;height:2px;width:35%;background:linear-gradient(90deg,transparent,var(--red),#fff,transparent);animation:hl 4s linear infinite}
+@keyframes hl{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
+.login .logo{height:54px;margin:0 auto 14px;filter:drop-shadow(0 0 18px rgba(255,31,45,.4))}
+.login h1{margin:0;text-align:center;font:400 22px/1.2 var(--wide);letter-spacing:.3em;color:#fff}
+.login h1 span{display:block;margin-top:8px;font:600 11px/1 var(--font);letter-spacing:.5em;color:var(--red)}
+.login .sub{text-align:center;color:var(--muted);font-size:14px;margin:18px 0 26px}
+.login .foot{margin-top:18px;text-align:center}
+label{display:flex;flex-direction:column;gap:8px;font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:#b4b4be;margin-bottom:16px}
+input,select,textarea{font:400 16px/1.4 var(--font);color:#fff;background:#08080a;border:1px solid #2e2e36;border-radius:4px;padding:14px;width:100%;text-transform:none;letter-spacing:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(255,31,45,.2)}
+.pw{position:relative}.pw input{padding-right:70px}
+.pw button{position:absolute;right:6px;top:6px;bottom:6px;background:#1d1d23;border:0;border-radius:3px;padding:0 12px;cursor:pointer;font-size:12px;color:#bbb}
+
+/* app */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(5,5,6,.78);backdrop-filter:blur(14px);border-bottom:1px solid #1d1d23}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:28px}
+.brand b{font:400 15px/1 var(--wide);letter-spacing:.28em;background:linear-gradient(180deg,#fff,#a9adb5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{display:block;margin-top:4px;font:600 9px/1 var(--font);letter-spacing:.4em;color:var(--red)}
+.who{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.who b{color:#fff;font-weight:600}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:16px 0 0;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:none;border:0;cursor:pointer;color:var(--muted);font:600 13px/1 var(--font);letter-spacing:.06em;padding:14px 16px;position:relative;white-space:nowrap}
+.tabs button:hover{color:#fff}
+.tabs button.on{color:#fff}
+.tabs button.on::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--red);box-shadow:0 0 12px var(--red)}
+.tabs .cnt{display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;margin-left:6px;padding:0 5px}
+main.app{padding:28px 0 90px;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+h2.t{margin:0 0 6px;font:700 24px/1.2 var(--font);color:#fff}
+.sub2{margin:0 0 22px;color:var(--muted);font-size:14.5px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:6px;padding:22px}
+.card h3{margin:0 0 12px;font:700 15px/1.3 var(--font);color:#fff;letter-spacing:.03em}
+.hero{position:relative;overflow:hidden;background:radial-gradient(500px 240px at 100% 0,rgba(255,31,45,.3),transparent 70%),linear-gradient(180deg,#1a1014,var(--panel));border:1px solid rgba(255,31,45,.35);border-radius:8px;padding:30px}
+.hero small{font:600 11px/1 var(--font);letter-spacing:.3em;text-transform:uppercase;color:#ff8a93}
+.bal{font:400 clamp(44px,9vw,76px)/1.1 var(--wide);color:#fff;margin:10px 0 4px;text-shadow:0 0 40px rgba(255,31,45,.5)}
+.bal span{font:600 14px/1 var(--font);letter-spacing:.2em;color:var(--muted);margin-left:8px}
+.bar{height:8px;background:#23232a;border-radius:4px;overflow:hidden;margin:14px 0 8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#8c0a14,var(--red));box-shadow:0 0 12px var(--red);border-radius:4px;transition:width 1s ease}
+.stat b{display:block;font:400 30px/1 var(--wide);color:#fff}
+.stat span{display:block;margin-top:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.code{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#08080a;border:1px dashed #44444e;border-radius:6px;padding:14px 16px;margin-top:6px}
+.code b{font:400 20px/1 var(--wide);letter-spacing:.2em;color:#fff}
+.list{display:flex;flex-direction:column}
+.item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid #1f1f25}
+.item:last-child{border-bottom:0}
+.item .l{min-width:0}.item .l b{display:block;color:#fff;font-weight:600;word-break:break-word}
+.item .l span{font-size:13px;color:var(--muted);word-break:break-word}
+.pos{color:var(--green);font-weight:700;white-space:nowrap}.neg{color:#ff6a74;font-weight:700;white-space:nowrap}
+.badge{display:inline-block;font:700 10px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px;border-radius:3px;white-space:nowrap}
+.b-pending{background:rgba(245,185,66,.14);color:var(--amber)}.b-ok{background:rgba(46,204,113,.14);color:var(--green)}.b-no{background:rgba(255,31,45,.14);color:#ff6a74}.b-gray{background:#23232a;color:#aaa}
+.rw{display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.rw::after{content:"";position:absolute;left:0;top:0;width:3px;height:44px;background:var(--red);box-shadow:0 0 14px var(--red)}
+.rw h3{margin:0}.rw p{margin:0;color:var(--muted);font-size:14px;flex:1}
+.rw .cost{font:400 22px/1 var(--wide);color:#fff}.rw .cost span{font:600 11px/1 var(--font);letter-spacing:.14em;color:var(--muted);margin-left:6px}
+.empty{padding:34px 12px;text-align:center;color:var(--muted);font-size:14.5px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.toolbar input{flex:1;min-width:200px}
+.cl{display:grid;grid-template-columns:1.4fr 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid #1f1f25}
+.cl:last-child{border-bottom:0}
+.cl .nm b{display:block;color:#fff}.cl .nm span{display:block;font-size:12.5px;color:var(--muted);word-break:break-all}
+.cl .pt{font:400 20px/1 var(--wide);color:#fff}.cl .pt small{display:block;margin-top:6px;font:600 10px/1 var(--font);letter-spacing:.14em;color:var(--muted)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.qrbox{background:#fff;border-radius:8px;padding:14px;width:min(260px,100%);margin:0 auto}
+.qrbox svg{width:100%;height:auto;display:block}
+.tok{font:400 12px/1.4 var(--wide);letter-spacing:.1em;text-align:center;color:#bbb;margin:12px 0 0;word-break:break-all}
+#scanbox video{width:100%;max-height:320px;border-radius:6px;background:#000;object-fit:cover}
+.scan{position:relative}
+.scan::after{content:"";position:absolute;left:12%;right:12%;top:50%;height:2px;background:var(--red);box-shadow:0 0 14px var(--red);animation:sc 2s ease-in-out infinite alternate}
+@keyframes sc{from{top:18%}to{top:82%}}
+.res{border:1px solid rgba(46,204,113,.4);background:rgba(46,204,113,.07);border-radius:6px;padding:18px;margin-top:16px}
+.res.warn{border-color:rgba(245,185,66,.4);background:rgba(245,185,66,.07)}
+
+/* modal & toast */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);animation:fade .2s ease}
+.mbox{width:min(480px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#1a1a20,#101013);border:1px solid #33333b;border-radius:8px;padding:26px;position:relative;box-shadow:0 40px 90px -20px #000}
+.mbox h3{margin:0 0 18px;font:700 19px/1.3 var(--font);color:#fff;padding-right:30px}
+.mbox .x{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:#23232a;border:0;cursor:pointer;font-size:18px;line-height:1}
+.mbox .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.mbox .row .btn{flex:1;min-width:130px}
+.cred{background:#08080a;border:1px dashed #44444e;border-radius:6px;padding:14px;font-size:14px;white-space:pre-wrap;word-break:break-word;margin:0 0 14px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(440px,92vw)}
+.tt{background:#17171c;border:1px solid #33333b;border-left:3px solid var(--green);color:#fff;padding:13px 16px;border-radius:5px;font-size:14px;box-shadow:0 16px 40px -10px #000;animation:fade .25s ease;width:100%}
+.tt.err{border-left-color:var(--red)}
+
+@media(max-width:860px){
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .cl{grid-template-columns:1fr 1fr}.cl .acts{grid-column:1/-1;justify-content:flex-start}
+}
+@media(max-width:560px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .who .nm{display:none}
+  .hero{padding:24px 20px}
+  .login{padding:32px 22px 26px}
+  }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.gstep{display:flex;gap:18px;align-items:flex-start}
+.gn{flex:none;width:40px;height:40px;border-radius:50%;border:2px solid var(--red);box-shadow:0 0 16px rgba(255,31,45,.45);display:grid;place-items:center;font:400 16px/1 var(--wide);color:#fff}
+.code-pre{margin:0;max-height:300px;overflow:auto;background:#08080a;border:1px solid #2a2a31;border-radius:6px;padding:14px;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#cfd2d8;white-space:pre;tab-size:2}
+@media(max-width:560px){.gstep{flex-direction:column;gap:12px}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><svg viewBox="0 0 1440 900" preserveAspectRatio="none">
+  <g class="base"><path pathLength="1000" d="M-40 260C220 230 420 120 640 -20"/><path pathLength="1000" d="M820 960C1060 780 1260 640 1500 520"/><path pathLength="1000" d="M-40 760C260 700 520 820 900 700S1250 640 1500 700"/></g>
+  <g class="run"><path style="--d:0s" pathLength="1000" d="M-40 260C220 230 420 120 640 -20"/><path style="--d:-5s" pathLength="1000" d="M820 960C1060 780 1260 640 1500 520"/><path style="--d:-8s" pathLength="1000" d="M-40 760C260 700 520 820 900 700S1250 640 1500 700"/></g>
+</svg></div>
+<div id="app"></div>
+<div id="modal" class="modal" hidden></div>
+<div id="toast" aria-live="polite"></div>
+<script type="text/plain" id="c-schema">-- =====================================================================
+-- VÉRTICE CLUBE • Banco de dados, segurança (RLS) e regras de negócio
+-- Rode este arquivo inteiro no SQL Editor do Supabase (uma única vez).
+-- Nenhuma credencial fica neste arquivo.
+-- =====================================================================
+
+create extension if not exists pgcrypto;
+
+-- ---------------------------------------------------------------- TABELAS
+create table public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  role text not null default 'client' check (role in ('master','client')),
+  full_name text not null check (char_length(full_name) between 3 and 120),
+  cpf text not null unique check (cpf ~ '^[0-9]{11}$'),
+  email text not null,
+  phone text check (phone is null or char_length(phone) between 8 and 20),
+  referral_code text not null unique default ('VC' || upper(encode(gen_random_bytes(4),'hex'))),
+  points_balance integer not null default 0 check (points_balance >= 0),
+  blocked boolean not null default false,
+  created_at timestamptz not null default now()
+);
+-- Só pode existir UM Master.
+create unique index profiles_single_master on public.profiles (role) where role = 'master';
+
+create table public.settings (
+  key text primary key,
+  value integer not null check (value >= 0),
+  updated_at timestamptz not null default now()
+);
+insert into public.settings (key, value) values ('referral_points', 100);
+
+create table public.point_transactions (
+  id bigint generated always as identity primary key,
+  client_id uuid not null references public.profiles(id) on delete cascade,
+  delta integer not null check (delta <> 0),
+  kind text not null check (kind in ('manual','referral','redemption')),
+  reason text not null,
+  created_by uuid references public.profiles(id) on delete set null,
+  created_at timestamptz not null default now()
+);
+create index point_transactions_client_idx on public.point_transactions (client_id, created_at desc);
+
+create table public.rewards (
+  id uuid primary key default gen_random_uuid(),
+  title text not null check (char_length(title) between 2 and 80),
+  description text check (description is null or char_length(description) <= 300),
+  points_cost integer not null check (points_cost > 0),
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+create table public.referrals (
+  id uuid primary key default gen_random_uuid(),
+  referrer_id uuid not null references public.profiles(id) on delete cascade,
+  referred_name text not null check (char_length(referred_name) between 2 and 100),
+  referred_phone text not null check (char_length(referred_phone) between 8 and 20),
+  status text not null default 'pending' check (status in ('pending','approved','rejected')),
+  points_awarded integer not null default 0,
+  created_at timestamptz not null default now(),
+  decided_at timestamptz,
+  decided_by uuid references public.profiles(id) on delete set null
+);
+
+create table public.redemptions (
+  id uuid primary key default gen_random_uuid(),
+  client_id uuid not null references public.profiles(id) on delete cascade,
+  reward_id uuid references public.rewards(id) on delete set null,
+  reward_title text not null,
+  points_cost integer not null,
+  token text not null unique default encode(gen_random_bytes(18),'hex'),
+  status text not null default 'pending' check (status in ('pending','validated','cancelled')),
+  created_at timestamptz not null default now(),
+  validated_at timestamptz,
+  validated_by uuid references public.profiles(id) on delete set null
+);
+
+create table public.audit_log (
+  id bigint generated always as identity primary key,
+  actor_id uuid references public.profiles(id) on delete set null,
+  action text not null,
+  target_id uuid,
+  details jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
+-- ------------------------------------------------------- FUNÇÕES AUXILIARES
+create or replace function public.is_master() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.profiles where id = auth.uid() and role = 'master' and not blocked);
+$$;
+
+create or replace function public.is_active_user() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.profiles where id = auth.uid() and not blocked);
+$$;
+
+-- Registro de auditoria: uso interno (ninguém chama direto pelo navegador).
+create or replace function public.log_audit(p_actor uuid, p_action text, p_target uuid, p_details jsonb)
+returns void language sql security definer set search_path = public as $$
+  insert into public.audit_log (actor_id, action, target_id, details)
+  values (p_actor, p_action, p_target, coalesce(p_details, '{}'::jsonb));
+$$;
+revoke all on function public.log_audit(uuid, text, uuid, jsonb) from public, anon, authenticated;
+
+-- ------------------------------------------------- SEGURANÇA (RLS + PERMISSÕES)
+alter table public.profiles            enable row level security;
+alter table public.settings            enable row level security;
+alter table public.point_transactions  enable row level security;
+alter table public.rewards             enable row level security;
+alter table public.referrals           enable row level security;
+alter table public.redemptions         enable row level security;
+alter table public.audit_log           enable row level security;
+
+revoke all on all tables    in schema public from anon, authenticated;
+revoke all on all sequences in schema public from anon, authenticated;
+
+-- Leitura (filtrada pelas políticas abaixo). Nenhum INSERT/UPDATE/DELETE direto,
+-- exceto recompensas e configurações, que as políticas liberam só ao Master.
+grant select on public.profiles, public.settings, public.point_transactions,
+                public.rewards, public.referrals, public.redemptions, public.audit_log to authenticated;
+grant insert, update, delete on public.rewards to authenticated;
+grant update on public.settings to authenticated;
+
+create policy profiles_select on public.profiles for select to authenticated
+  using ((id = auth.uid() and not blocked) or public.is_master());
+
+create policy settings_select on public.settings for select to authenticated
+  using (public.is_active_user());
+create policy settings_update on public.settings for update to authenticated
+  using (public.is_master()) with check (public.is_master());
+
+create policy tx_select on public.point_transactions for select to authenticated
+  using ((client_id = auth.uid() and public.is_active_user()) or public.is_master());
+
+create policy rewards_select on public.rewards for select to authenticated
+  using (public.is_master() or (active and public.is_active_user()));
+create policy rewards_insert on public.rewards for insert to authenticated
+  with check (public.is_master());
+create policy rewards_update on public.rewards for update to authenticated
+  using (public.is_master()) with check (public.is_master());
+create policy rewards_delete on public.rewards for delete to authenticated
+  using (public.is_master());
+
+create policy referrals_select on public.referrals for select to authenticated
+  using ((referrer_id = auth.uid() and public.is_active_user()) or public.is_master());
+
+create policy redemptions_select on public.redemptions for select to authenticated
+  using ((client_id = auth.uid() and public.is_active_user()) or public.is_master());
+
+create policy audit_select on public.audit_log for select to authenticated
+  using (public.is_master());
+
+-- Auditoria automática de recompensas e configurações (feitas direto pelo Master)
+create or replace function public.audit_rewards() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if tg_op = 'DELETE' then
+    perform public.log_audit(auth.uid(), 'reward_deleted', old.id, jsonb_build_object('title', old.title));
+    return old;
+  elsif tg_op = 'UPDATE' then
+    perform public.log_audit(auth.uid(), 'reward_updated', new.id,
+      jsonb_build_object('title', new.title, 'points_cost', new.points_cost, 'active', new.active));
+    return new;
+  else
+    perform public.log_audit(auth.uid(), 'reward_created', new.id,
+      jsonb_build_object('title', new.title, 'points_cost', new.points_cost));
+    return new;
+  end if;
+end $$;
+create trigger rewards_audit after insert or update or delete on public.rewards
+  for each row execute function public.audit_rewards();
+
+create or replace function public.audit_settings() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  new.updated_at := now();
+  perform public.log_audit(auth.uid(), 'setting_updated', null,
+    jsonb_build_object('key', new.key, 'old', old.value, 'new', new.value));
+  return new;
+end $$;
+create trigger settings_audit before update on public.settings
+  for each row execute function public.audit_settings();
+
+-- ------------------------------------------------ OPERAÇÕES DO MASTER (RPC)
+create or replace function public.adjust_points(p_client uuid, p_delta integer, p_reason text)
+returns integer language plpgsql security definer set search_path = public as $$
+declare v_bal integer; v_role text; v_new integer;
+begin
+  if not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  if p_delta = 0 or abs(p_delta) > 1000000 then raise exception 'Quantidade de pontos inválida'; end if;
+  if p_reason is null or char_length(trim(p_reason)) < 3 then raise exception 'Informe o motivo do ajuste'; end if;
+  select role, points_balance into v_role, v_bal from public.profiles where id = p_client for update;
+  if not found or v_role <> 'client' then raise exception 'Cliente não encontrado'; end if;
+  if v_bal + p_delta < 0 then raise exception 'Saldo insuficiente para retirar essa quantidade'; end if;
+  update public.profiles set points_balance = points_balance + p_delta where id = p_client returning points_balance into v_new;
+  insert into public.point_transactions (client_id, delta, kind, reason, created_by)
+    values (p_client, p_delta, 'manual', trim(p_reason), auth.uid());
+  perform public.log_audit(auth.uid(), case when p_delta > 0 then 'points_added' else 'points_removed' end, p_client,
+    jsonb_build_object('delta', p_delta, 'reason', trim(p_reason), 'balance', v_new));
+  return v_new;
+end $$;
+
+create or replace function public.set_client_blocked(p_client uuid, p_blocked boolean)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  update public.profiles set blocked = p_blocked where id = p_client and role = 'client';
+  if not found then raise exception 'Cliente não encontrado'; end if;
+  perform public.log_audit(auth.uid(), case when p_blocked then 'client_blocked' else 'client_unblocked' end, p_client, '{}'::jsonb);
+end $$;
+
+create or replace function public.approve_referral(p_id uuid)
+returns integer language plpgsql security definer set search_path = public as $$
+declare r public.referrals%rowtype; v_pts integer;
+begin
+  if not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  select * into r from public.referrals where id = p_id and status = 'pending' for update;
+  if not found then raise exception 'Indicação não encontrada ou já decidida'; end if;
+  select value into v_pts from public.settings where key = 'referral_points';
+  if v_pts > 0 then
+    update public.profiles set points_balance = points_balance + v_pts where id = r.referrer_id;
+    insert into public.point_transactions (client_id, delta, kind, reason, created_by)
+      values (r.referrer_id, v_pts, 'referral', 'Indicação aprovada: ' || r.referred_name, auth.uid());
+  end if;
+  update public.referrals set status = 'approved', points_awarded = v_pts, decided_at = now(), decided_by = auth.uid() where id = p_id;
+  perform public.log_audit(auth.uid(), 'referral_approved', r.referrer_id,
+    jsonb_build_object('referral', p_id, 'name', r.referred_name, 'points', v_pts));
+  return v_pts;
+end $$;
+
+create or replace function public.reject_referral(p_id uuid)
+returns void language plpgsql security definer set search_path = public as $$
+declare r public.referrals%rowtype;
+begin
+  if not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  select * into r from public.referrals where id = p_id and status = 'pending' for update;
+  if not found then raise exception 'Indicação não encontrada ou já decidida'; end if;
+  update public.referrals set status = 'rejected', decided_at = now(), decided_by = auth.uid() where id = p_id;
+  perform public.log_audit(auth.uid(), 'referral_rejected', r.referrer_id,
+    jsonb_build_object('referral', p_id, 'name', r.referred_name));
+end $$;
+
+create or replace function public.validate_redemption(p_token text)
+returns jsonb language plpgsql security definer set search_path = public as $$
+declare r public.redemptions%rowtype; v_bal integer; v_blocked boolean;
+begin
+  if not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  select * into r from public.redemptions where token = p_token for update;
+  if not found then raise exception 'QR Code inválido'; end if;
+  if r.status <> 'pending' then raise exception 'Este QR Code já foi utilizado ou cancelado'; end if;
+  select points_balance, blocked into v_bal, v_blocked from public.profiles where id = r.client_id for update;
+  if v_blocked then raise exception 'Cliente bloqueado'; end if;
+  if v_bal < r.points_cost then raise exception 'Saldo insuficiente do cliente'; end if;
+  update public.profiles set points_balance = points_balance - r.points_cost where id = r.client_id;
+  insert into public.point_transactions (client_id, delta, kind, reason, created_by)
+    values (r.client_id, -r.points_cost, 'redemption', 'Resgate: ' || r.reward_title, auth.uid());
+  update public.redemptions set status = 'validated', validated_at = now(), validated_by = auth.uid() where id = r.id;
+  perform public.log_audit(auth.uid(), 'redemption_validated', r.client_id,
+    jsonb_build_object('redemption', r.id, 'reward', r.reward_title, 'points', r.points_cost));
+  return jsonb_build_object('client_id', r.client_id, 'reward', r.reward_title, 'points', r.points_cost);
+end $$;
+
+-- ------------------------------------------------------ OPERAÇÕES DO CLIENTE (RPC)
+create or replace function public.submit_referral(p_name text, p_phone text)
+returns uuid language plpgsql security definer set search_path = public as $$
+declare v_id uuid;
+begin
+  if not public.is_active_user() or public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  if (select count(*) from public.referrals where referrer_id = auth.uid() and status = 'pending') >= 20 then
+    raise exception 'Você já tem muitas indicações aguardando aprovação';
+  end if;
+  insert into public.referrals (referrer_id, referred_name, referred_phone)
+    values (auth.uid(), trim(p_name), trim(p_phone)) returning id into v_id;
+  return v_id;
+end $$;
+
+create or replace function public.request_redemption(p_reward uuid)
+returns public.redemptions language plpgsql security definer set search_path = public as $$
+declare rw public.rewards%rowtype; v_bal integer; v_pending integer; r public.redemptions;
+begin
+  if not public.is_active_user() or public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  select * into rw from public.rewards where id = p_reward and active;
+  if not found then raise exception 'Recompensa indisponível'; end if;
+  select points_balance into v_bal from public.profiles where id = auth.uid();
+  select coalesce(sum(points_cost), 0) into v_pending from public.redemptions where client_id = auth.uid() and status = 'pending';
+  if v_bal - v_pending < rw.points_cost then raise exception 'Pontos insuficientes'; end if;
+  insert into public.redemptions (client_id, reward_id, reward_title, points_cost)
+    values (auth.uid(), rw.id, rw.title, rw.points_cost) returning * into r;
+  return r;
+end $$;
+
+create or replace function public.cancel_redemption(p_id uuid)
+returns void language plpgsql security definer set search_path = public as $$
+declare r public.redemptions%rowtype;
+begin
+  select * into r from public.redemptions where id = p_id and status = 'pending' for update;
+  if not found then raise exception 'Resgate não encontrado ou já finalizado'; end if;
+  if r.client_id <> auth.uid() and not public.is_master() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  update public.redemptions set status = 'cancelled' where id = p_id;
+  if public.is_master() then
+    perform public.log_audit(auth.uid(), 'redemption_cancelled', r.client_id, jsonb_build_object('redemption', p_id, 'reward', r.reward_title));
+  end if;
+end $$;
+
+create or replace function public.update_my_phone(p_phone text)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_active_user() then raise exception 'Acesso negado' using errcode = '42501'; end if;
+  update public.profiles set phone = nullif(trim(p_phone), '') where id = auth.uid();
+end $$;
+
+-- Só usuários logados executam as funções acima (visitantes nunca).
+do $$
+declare f text;
+begin
+  foreach f in array array[
+    'adjust_points(uuid,integer,text)','set_client_blocked(uuid,boolean)','approve_referral(uuid)',
+    'reject_referral(uuid)','validate_redemption(text)','submit_referral(text,text)',
+    'request_redemption(uuid)','cancel_redemption(uuid)','update_my_phone(text)',
+    'is_master()','is_active_user()'
+  ] loop
+    execute format('revoke all on function public.%s from public, anon', f);
+    execute format('grant execute on function public.%s to authenticated', f);
+  end loop;
+end $$;
+</script>
+<script type="text/plain" id="c-master">-- =====================================================================
+-- CRIAÇÃO DO MASTER (rode UMA vez, direto no SQL Editor do Supabase)
+-- NÃO salve seus dados reais neste arquivo e NÃO envie para o GitHub.
+--
+-- Antes: em Authentication > Users > "Add user", crie o usuário do proprietário
+--        com o e-mail e uma senha forte (marque "Auto Confirm User").
+-- Depois: troque os 4 valores abaixo e execute.
+-- =====================================================================
+insert into public.profiles (id, role, full_name, cpf, email, phone)
+select id, 'master', 'NOME COMPLETO DO PROPRIETARIO', 'SOMENTE_OS_11_NUMEROS_DO_CPF', email, 'TELEFONE'
+from auth.users
+where email = 'EMAIL_DO_PROPRIETARIO';
+</script>
+<script type="text/plain" id="c-login">// Login por CPF + senha. O navegador nunca recebe o e-mail do cliente.
+// Deploy: supabase functions deploy cpf-login --no-verify-jwt
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const cors = {
+  "Access-Control-Allow-Origin": Deno.env.get("ALLOWED_ORIGIN") ?? "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+const json = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
+
+const GENERIC = "CPF ou senha incorretos";
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+  if (req.method !== "POST") return json({ error: "Método não permitido" }, 405);
+  try {
+    const { cpf, password } = await req.json();
+    const digits = String(cpf ?? "").replace(/\D/g, "");
+    if (digits.length !== 11 || typeof password !== "string" || password.length < 1 || password.length > 200) {
+      return json({ error: GENERIC }, 401);
+    }
+    const url = Deno.env.get("SUPABASE_URL")!;
+    const admin = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
+    const { data: prof } = await admin.from("profiles").select("email, blocked").eq("cpf", digits).maybeSingle();
+    if (!prof) return json({ error: GENERIC }, 401);
+
+    const anon = createClient(url, Deno.env.get("SUPABASE_ANON_KEY")!, { auth: { persistSession: false } });
+    const { data, error } = await anon.auth.signInWithPassword({ email: prof.email, password });
+    if (error || !data.session) return json({ error: GENERIC }, 401);
+
+    if (prof.blocked) {
+      await anon.auth.signOut();
+      return json({ error: "Conta bloqueada. Fale com a Vértice." }, 403);
+    }
+    return json({ session: { access_token: data.session.access_token, refresh_token: data.session.refresh_token } });
+  } catch (_e) {
+    return json({ error: "Não foi possível entrar agora. Tente novamente." }, 500);
+  }
+});
+</script>
+<script type="text/plain" id="c-admin">// Ações administrativas que exigem a chave de serviço (nunca exposta ao navegador).
+// Só o Master consegue usar. Deploy: supabase functions deploy admin-api
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const cors = {
+  "Access-Control-Allow-Origin": Deno.env.get("ALLOWED_ORIGIN") ?? "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+const json = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
+
+function cpfValido(c: string): boolean {
+  if (c.length !== 11 || /^(\d)\1+$/.test(c)) return false;
+  for (let t = 9; t < 11; t++) {
+    let s = 0;
+    for (let i = 0; i < t; i++) s += Number(c[i]) * (t + 1 - i);
+    if (((s * 10) % 11) % 10 !== Number(c[t])) return false;
+  }
+  return true;
+}
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+  if (req.method !== "POST") return json({ error: "Método não permitido" }, 405);
+  try {
+    const url = Deno.env.get("SUPABASE_URL")!;
+    const authHeader = req.headers.get("Authorization") ?? "";
+    const userClient = createClient(url, Deno.env.get("SUPABASE_ANON_KEY")!, {
+      global: { headers: { Authorization: authHeader } }, auth: { persistSession: false },
+    });
+    const { data: { user } } = await userClient.auth.getUser();
+    if (!user) return json({ error: "Sessão inválida" }, 401);
+
+    const admin = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
+    const { data: me } = await admin.from("profiles").select("role, blocked").eq("id", user.id).maybeSingle();
+    if (!me || me.role !== "master" || me.blocked) return json({ error: "Acesso negado" }, 403);
+
+    const body = await req.json();
+    const action = body?.action;
+
+    if (action === "create_client") {
+      const full_name = String(body.full_name ?? "").trim();
+      const cpf = String(body.cpf ?? "").replace(/\D/g, "");
+      const email = String(body.email ?? "").trim().toLowerCase();
+      const phone = String(body.phone ?? "").replace(/\D/g, "");
+      const password = String(body.password ?? "");
+      if (full_name.length < 3) return json({ error: "Informe o nome completo" }, 400);
+      if (!cpfValido(cpf)) return json({ error: "CPF inválido" }, 400);
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ error: "E-mail inválido" }, 400);
+      if (phone.length < 10 || phone.length > 11) return json({ error: "Telefone inválido" }, 400);
+      if (password.length < 8) return json({ error: "A senha inicial precisa ter ao menos 8 caracteres" }, 400);
+
+      const { data: dup } = await admin.from("profiles").select("id").eq("cpf", cpf).maybeSingle();
+      if (dup) return json({ error: "Já existe um cliente com esse CPF" }, 409);
+
+      const { data: created, error: e1 } = await admin.auth.admin.createUser({
+        email, password, email_confirm: true, user_metadata: { full_name },
+      });
+      if (e1 || !created.user) return json({ error: e1?.message?.includes("already") ? "Esse e-mail já está em uso" : "Não foi possível criar a conta" }, 400);
+
+      const { data: prof, error: e2 } = await admin.from("profiles")
+        .insert({ id: created.user.id, role: "client", full_name, cpf, email, phone })
+        .select("id, referral_code").single();
+      if (e2) {
+        await admin.auth.admin.deleteUser(created.user.id);
+        return json({ error: "Não foi possível criar o perfil do cliente" }, 400);
+      }
+      await admin.from("audit_log").insert({ actor_id: user.id, action: "client_created", target_id: prof.id, details: { name: full_name } });
+      return json({ id: prof.id, referral_code: prof.referral_code });
+    }
+
+    if (action === "reset_password") {
+      const client_id = String(body.client_id ?? "");
+      const password = String(body.password ?? "");
+      if (password.length < 8) return json({ error: "A senha precisa ter ao menos 8 caracteres" }, 400);
+      const { data: target } = await admin.from("profiles").select("id, role").eq("id", client_id).maybeSingle();
+      if (!target || target.role !== "client") return json({ error: "Cliente não encontrado" }, 404);
+      const { error } = await admin.auth.admin.updateUserById(client_id, { password });
+      if (error) return json({ error: "Não foi possível redefinir a senha" }, 400);
+      await admin.from("audit_log").insert({ actor_id: user.id, action: "password_reset", target_id: client_id, details: {} });
+      return json({ ok: true });
+    }
+
+    return json({ error: "Ação desconhecida" }, 400);
+  } catch (_e) {
+    return json({ error: "Erro interno" }, 500);
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script>
+(function(){
+"use strict";
+/* ====== CONFIGURAÇÃO (Supabase) — preencha a linha abaixo no passo 6 da tela de instalação ======
+   A "anon key" é pública por natureza: a proteção real está nas regras (RLS) do banco.
+   NUNCA coloque a service_role key, CPF ou senha do Master neste arquivo. */
+var CFG = { url: "https://qgxarrzutjpeqlhrswck.supabase.co", anon: "sb_publishable_d5ylmuLIXnKu2czlT5xtSQ_9oMRqvNQ" };
+var ICON = "data:image/png;base64,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";
+var READY = !!(CFG.url && CFG.anon);
+
+/* ====== utilidades ====== */
+var $ = function(s, r){ return (r || document).querySelector(s); };
+var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+var nf = function(n){ return Number(n || 0).toLocaleString("pt-BR"); };
+var fD = function(d){ return d ? new Date(d).toLocaleDateString("pt-BR") : "–"; };
+var fDT = function(d){ return d ? new Date(d).toLocaleString("pt-BR", {dateStyle:"short", timeStyle:"short"}) : "–"; };
+var dig = function(s){ return String(s || "").replace(/\D/g, ""); };
+function cpfMask(v){ v = dig(v).slice(0, 11); return v.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2"); }
+function phoneMask(v){ v = dig(v).slice(0, 11); if (v.length > 6) return v.replace(/(\d{2})(\d{4,5})(\d{4})$/, "($1) $2-$3"); if (v.length > 2) return v.replace(/(\d{2})(\d+)/, "($1) $2"); return v; }
+function cpfOk(c){ c = dig(c); if (c.length !== 11 || /^(\d)\1+$/.test(c)) return false; for (var t = 9; t < 11; t++){ var s = 0; for (var i = 0; i < t; i++) s += +c[i] * (t + 1 - i); if (((s * 10) % 11) % 10 !== +c[t]) return false; } return true; }
+function toast(msg, err){ var el = document.createElement("div"); el.className = "tt" + (err ? " err" : ""); el.textContent = msg; $("#toast").appendChild(el); setTimeout(function(){ el.remove(); }, err ? 5200 : 3200); }
+function openModal(html){ var m = $("#modal"); m.innerHTML = '<div class="mbox" role="dialog" aria-modal="true"><button class="x" data-act="close" aria-label="Fechar">×</button>' + html + '</div>'; m.hidden = false; var f = m.querySelector("input,select,textarea"); if (f) setTimeout(function(){ f.focus(); }, 50); }
+function closeModal(){ var m = $("#modal"); m.hidden = true; m.innerHTML = ""; }
+function genPw(){ var c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789", o = "", a = new Uint32Array(10); crypto.getRandomValues(a); for (var i = 0; i < 10; i++) o += c[a[i] % c.length]; return o; }
+function copy(t){ if (navigator.clipboard) navigator.clipboard.writeText(t).then(function(){ toast("Copiado!"); }, function(){ toast("Não foi possível copiar", true); }); }
+function msgOf(e){ return (e && e.message) ? e.message : "Algo deu errado. Tente novamente."; }
+
+/* ====== API REAL (Supabase) ====== */
+function realApi(){
+  var sb = window.supabase.createClient(CFG.url, CFG.anon, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
+  async function q(p){ var r = await p; if (r.error) throw new Error(r.error.message); return r.data; }
+  async function rpc(fn, a){ return q(sb.rpc(fn, a)); }
+  async function fn(name, body, auth){
+    var h = { "Content-Type": "application/json", apikey: CFG.anon };
+    if (!auth && /^eyJ/.test(CFG.anon)) h.Authorization = "Bearer " + CFG.anon;
+    if (auth){ var s = (await sb.auth.getSession()).data.session; if (!s) throw new Error("Sessão expirada. Entre novamente."); h.Authorization = "Bearer " + s.access_token; }
+    var r; try { r = await fetch(CFG.url + "/functions/v1/" + name, { method: "POST", headers: h, body: JSON.stringify(body) }); } catch (e){ throw new Error("Não foi possível chamar a função \"" + name + "\". Confira no Supabase se ela foi publicada com esse nome exato e, no caso da cpf-login, com Verify JWT desligado."); }
+    var j = await r.json().catch(function(){ return {}; });
+    if (!r.ok) throw new Error(j.error || (j.message ? "Erro " + r.status + ": " + j.message : "Não foi possível concluir a ação (" + r.status + ")."));
+    return j;
+  }
+  sb.auth.onAuthStateChange(function(ev){ if (ev === "PASSWORD_RECOVERY"){ S.recovery = true; render(); } });
+  return {
+    async me(){ var s = (await sb.auth.getSession()).data.session; if (!s) return null; var d = (await sb.from("profiles").select("*").eq("id", s.user.id).maybeSingle()).data; if (!d){ await sb.auth.signOut(); return null; } return d; },
+    async login(cpf, pw){ var j = await fn("cpf-login", { cpf: dig(cpf), password: pw }, false); var r = await sb.auth.setSession(j.session); if (r.error) throw new Error("Não foi possível iniciar a sessão."); },
+    async logout(){ await sb.auth.signOut(); },
+    async recover(email){ await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname }); },
+    async changePassword(pw){ var r = await sb.auth.updateUser({ password: pw }); if (r.error) throw new Error(r.error.message); },
+    clients: function(){ return q(sb.from("profiles").select("*").eq("role", "client").order("created_at", { ascending: false })); },
+    tx: function(cid){ var b = sb.from("point_transactions").select("*").order("created_at", { ascending: false }).limit(300); return q(cid ? b.eq("client_id", cid) : b); },
+    referrals: function(){ return q(sb.from("referrals").select("*").order("created_at", { ascending: false }).limit(500)); },
+    rewards: function(){ return q(sb.from("rewards").select("*").order("points_cost", { ascending: true })); },
+    redemptions: function(){ return q(sb.from("redemptions").select("*").order("created_at", { ascending: false }).limit(500)); },
+    audit: function(){ return q(sb.from("audit_log").select("*").order("created_at", { ascending: false }).limit(200)); },
+    async settings(){ var d = await q(sb.from("settings").select("*")); var o = {}; d.forEach(function(r){ o[r.key] = r.value; }); return o; },
+    setReferralPoints: function(v){ return q(sb.from("settings").update({ value: v }).eq("key", "referral_points")); },
+    createClient: function(p){ return fn("admin-api", Object.assign({ action: "create_client" }, p), true); },
+    resetPassword: function(id, pw){ return fn("admin-api", { action: "reset_password", client_id: id, password: pw }, true); },
+    adjust: function(id, d, r){ return rpc("adjust_points", { p_client: id, p_delta: d, p_reason: r }); },
+    setBlocked: function(id, b){ return rpc("set_client_blocked", { p_client: id, p_blocked: b }); },
+    approveRef: function(id){ return rpc("approve_referral", { p_id: id }); },
+    rejectRef: function(id){ return rpc("reject_referral", { p_id: id }); },
+    validate: function(t){ return rpc("validate_redemption", { p_token: t }); },
+    saveReward: function(r){ var b = { title: r.title, description: r.description || null, points_cost: r.points_cost, active: r.active }; return q(r.id ? sb.from("rewards").update(b).eq("id", r.id) : sb.from("rewards").insert(b)); },
+    delReward: function(id){ return q(sb.from("rewards").delete().eq("id", id)); },
+    submitRef: function(n, p){ return rpc("submit_referral", { p_name: n, p_phone: p }); },
+    request: function(id){ return rpc("request_redemption", { p_reward: id }); },
+    cancelRed: function(id){ return rpc("cancel_redemption", { p_id: id }); },
+    updatePhone: function(p){ return rpc("update_my_phone", { p_phone: p }); }
+  };
+}
+
+var api = READY ? realApi() : null;
+
+/* ====== estado ====== */
+var S = { me: null, tab: "", d: {}, recovery: false, q: "", found: null };
+var AL = { client_created:"Cliente cadastrado", points_added:"Pontos adicionados", points_removed:"Pontos retirados", client_blocked:"Cliente bloqueado", client_unblocked:"Cliente desbloqueado", referral_approved:"Indicação aprovada", referral_rejected:"Indicação recusada", redemption_validated:"Resgate validado", redemption_cancelled:"Resgate cancelado", reward_created:"Recompensa criada", reward_updated:"Recompensa editada", reward_deleted:"Recompensa excluída", password_reset:"Senha redefinida", setting_updated:"Configuração alterada" };
+function badge(s){ var m = { pending:["b-pending","Aguardando"], approved:["b-ok","Aprovada"], rejected:["b-no","Recusada"], validated:["b-ok","Validado"], cancelled:["b-gray","Cancelado"] }[s] || ["b-gray", s]; return '<span class="badge ' + m[0] + '">' + m[1] + '</span>'; }
+
+async function loadData(){
+  var d = {}, r;
+  if (S.me.role === "master"){
+    r = await Promise.all([api.clients(), api.referrals(), api.rewards(), api.redemptions(), api.audit(), api.settings()]);
+    d.clients = r[0]; d.refs = r[1]; d.rewards = r[2]; d.reds = r[3]; d.audit = r[4]; d.settings = r[5];
+    d.map = {}; d.clients.forEach(function(c){ d.map[c.id] = c; }); d.map[S.me.id] = S.me;
+  } else {
+    r = await Promise.all([api.tx(), api.referrals(), api.rewards(), api.redemptions(), api.settings()]);
+    d.tx = r[0]; d.refs = r[1]; d.rewards = r[2]; d.reds = r[3]; d.settings = r[4];
+  }
+  S.d = d;
+}
+async function refresh(){ S.me = await api.me(); if (S.me) await loadData(); render(); }
+async function run(fn, ok){ try { var r = await fn(); if (ok) toast(ok); return r; } catch (e){ toast(msgOf(e), true); throw e; } }
+
+/* ====== telas ====== */
+function loginView(){
+  return '<main class="auth"><div class="login"><img class="logo" src="' + ICON + '" alt="Vértice"><h1>VÉRTICE<span>CLUBE</span></h1><p class="sub">Acesso exclusivo para clientes cadastrados pela Vértice.</p>' +
+    '<form data-form="login" autocomplete="on"><label>CPF<input name="cpf" inputmode="numeric" autocomplete="username" placeholder="000.000.000-00" maxlength="14" required></label>' +
+    '<label>Senha<div class="pw"><input name="pw" type="password" autocomplete="current-password" placeholder="Sua senha" required><button type="button" data-act="togglepw">Ver</button></div></label>' +
+    '<button class="btn block" type="submit">Entrar</button></form><div class="foot"><button class="lnk" data-act="forgot">Esqueci minha senha</button></div></div></main>';
+}
+function recoveryView(){
+  return '<main class="auth"><div class="login"><img class="logo" src="' + ICON + '" alt="Vértice"><h1>NOVA SENHA</h1><p class="sub">Escolha uma nova senha para acessar o Vértice Clube.</p><form data-form="recovery"><label>Nova senha<input name="pw" type="password" minlength="8" autocomplete="new-password" required></label><label>Repita a senha<input name="pw2" type="password" minlength="8" autocomplete="new-password" required></label><button class="btn block" type="submit">Salvar senha</button></form></div></main>';
+}
+function shell(tabs, body){
+  var nm = esc(S.me.full_name.split(" ")[0]);
+  return '<header class="top"><div class="wrap"><div class="brand"><img src="' + ICON + '" alt=""><div><b>VÉRTICE</b><small>CLUBE</small></div></div><div class="who"><span class="nm">Olá, <b>' + nm + '</b>' + (S.me.role === "master" ? ' • Master' : '') + '</span><button class="btn sm ghost" data-act="logout">Sair</button></div></div></header>' +
+    '<div class="wrap"><nav class="tabs">' + tabs.map(function(t){ return '<button class="' + (S.tab === t[0] ? "on" : "") + '" data-act="tab" data-t="' + t[0] + '">' + t[1] + (t[2] ? '<span class="cnt">' + t[2] + '</span>' : '') + '</button>'; }).join("") + '</nav><main class="app">' + body + '</main></div>';
+}
+function empty(t){ return '<div class="empty">' + t + '</div>'; }
+
+/* ---- cliente ---- */
+function clientView(){
+  var d = S.d, me = S.me, pend = d.reds.filter(function(r){ return r.status === "pending"; });
+  var tabs = [["inicio","Início"],["recompensas","Recompensas"],["resgates","Meus resgates", pend.length || ""],["indicacoes","Indicações"],["extrato","Extrato"],["perfil","Perfil"]];
+  var b = "";
+  if (S.tab === "inicio"){
+    var next = d.rewards.filter(function(r){ return r.points_cost > me.points_balance; })[0], pct = 100, hint = "Você já pode resgatar qualquer recompensa disponível.";
+    if (next){ pct = Math.max(4, Math.min(100, Math.round(me.points_balance / next.points_cost * 100))); hint = "Faltam <b>" + nf(next.points_cost - me.points_balance) + "</b> pontos para <b>" + esc(next.title) + "</b>"; }
+    b = '<div class="hero"><small>Seu saldo</small><div class="bal"><em data-count="' + me.points_balance + '">0</em><span>pontos</span></div><div class="bar"><i style="width:' + pct + '%"></i></div><div style="font-size:14px;color:#c3c3cb">' + hint + '</div></div>' +
+      '<div class="grid g2" style="margin-top:14px"><div class="card"><h3>Seu código de indicação</h3><div class="code"><b>' + esc(me.referral_code) + '</b><button class="btn sm dark" data-act="copy" data-v="' + esc(me.referral_code) + '">Copiar</button></div><p style="margin:12px 0 0;font-size:13.5px;color:var(--muted)">Indique amigos e ganhe <b style="color:#fff">' + nf(d.settings.referral_points) + ' pontos</b> por indicação aprovada.</p></div>' +
+      '<div class="card"><h3>Últimas movimentações</h3>' + (d.tx.length ? '<div class="list">' + d.tx.slice(0, 4).map(txRow).join("") + '</div>' : empty("Nenhuma movimentação ainda.")) + '</div></div>';
+  }
+  if (S.tab === "recompensas"){
+    b = '<h2 class="t">Recompensas</h2><p class="sub2">Troque seus pontos por benefícios. O desconto só acontece quando a Vértice validar o seu QR Code.</p>' +
+      (d.rewards.length ? '<div class="grid g3">' + d.rewards.map(function(r){ var ok = me.points_balance >= r.points_cost; return '<div class="card rw"><h3>' + esc(r.title) + '</h3><p>' + esc(r.description || "") + '</p><div class="cost">' + nf(r.points_cost) + '<span>PONTOS</span></div><button class="btn sm" ' + (ok ? "" : "disabled") + ' data-act="redeem" data-id="' + esc(r.id) + '">' + (ok ? "Resgatar" : "Pontos insuficientes") + '</button></div>'; }).join("") + '</div>' : '<div class="card">' + empty("Nenhuma recompensa disponível no momento.") + '</div>');
+  }
+  if (S.tab === "resgates"){
+    b = '<h2 class="t">Meus resgates</h2><p class="sub2">Apresente o QR Code à Vértice para validar o resgate.</p><div class="card">' + (d.reds.length ? '<div class="list">' + d.reds.map(function(r){ return '<div class="item"><div class="l"><b>' + esc(r.reward_title) + '</b><span>' + nf(r.points_cost) + ' pontos • ' + fDT(r.created_at) + '</span></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">' + badge(r.status) + (r.status === "pending" ? '<button class="btn sm" data-act="showqr" data-id="' + esc(r.id) + '">Ver QR</button><button class="btn sm dark" data-act="cancelred" data-id="' + esc(r.id) + '">Cancelar</button>' : "") + '</div></div>'; }).join("") + '</div>' : empty("Você ainda não resgatou nenhuma recompensa.")) + '</div>';
+  }
+  if (S.tab === "indicacoes"){
+    b = '<h2 class="t">Indicações</h2><p class="sub2">Indique alguém e, quando a Vértice aprovar, você ganha <b style="color:#fff">' + nf(d.settings.referral_points) + ' pontos</b>.</p><div class="grid g2"><div class="card"><h3>Indicar uma pessoa</h3><form data-form="referral"><label>Nome<input name="n" required minlength="2" maxlength="100" placeholder="Nome de quem você indica"></label><label>Telefone / WhatsApp<input name="p" inputmode="tel" required placeholder="(11) 90000-0000"></label><button class="btn" type="submit">Enviar indicação</button></form></div><div class="card"><h3>Suas indicações</h3>' + (d.refs.length ? '<div class="list">' + d.refs.map(function(r){ return '<div class="item"><div class="l"><b>' + esc(r.referred_name) + '</b><span>' + fD(r.created_at) + (r.status === "approved" ? " • +" + nf(r.points_awarded) + " pts" : "") + '</span></div>' + badge(r.status) + '</div>'; }).join("") + '</div>' : empty("Nenhuma indicação enviada.")) + '</div></div>';
+  }
+  if (S.tab === "extrato"){
+    b = '<h2 class="t">Extrato de pontos</h2><p class="sub2">Todas as movimentações da sua conta.</p><div class="card">' + (d.tx.length ? '<div class="list">' + d.tx.map(txRow).join("") + '</div>' : empty("Nenhuma movimentação ainda.")) + '</div>';
+  }
+  if (S.tab === "perfil"){
+    b = '<h2 class="t">Meu perfil</h2><p class="sub2">Seus dados de acesso ao Vértice Clube.</p><div class="grid g2"><div class="card"><h3>Dados</h3><div class="list"><div class="item"><div class="l"><span>Nome</span><b>' + esc(me.full_name) + '</b></div></div><div class="item"><div class="l"><span>CPF</span><b>' + cpfMask(me.cpf) + '</b></div></div><div class="item"><div class="l"><span>E-mail</span><b>' + esc(me.email) + '</b></div></div><div class="item"><div class="l"><span>Cliente desde</span><b>' + fD(me.created_at) + '</b></div></div></div><form data-form="phone" style="margin-top:16px"><label>Telefone<input name="p" inputmode="tel" value="' + esc(phoneMask(me.phone)) + '" placeholder="(11) 90000-0000"></label><button class="btn sm" type="submit">Salvar telefone</button></form></div>' +
+      '<div class="card"><h3>Alterar senha</h3><form data-form="newpw"><label>Nova senha<input name="pw" type="password" minlength="8" autocomplete="new-password" required placeholder="Mínimo de 8 caracteres"></label><label>Repita a nova senha<input name="pw2" type="password" minlength="8" autocomplete="new-password" required></label><button class="btn sm" type="submit">Alterar senha</button></form><p style="margin:14px 0 0;font-size:13px;color:var(--muted)">Para atualizar nome, CPF ou e-mail, fale com a Vértice.</p></div></div>';
+  }
+  return shell(tabs, b);
+}
+function txRow(t){ return '<div class="item"><div class="l"><b>' + esc(t.reason) + '</b><span>' + fDT(t.created_at) + '</span></div><span class="' + (t.delta > 0 ? "pos" : "neg") + '">' + (t.delta > 0 ? "+" : "") + nf(t.delta) + '</span></div>'; }
+
+/* ---- master ---- */
+function clientRows(){
+  var q = S.q.trim().toLowerCase(), qd = dig(S.q);
+  var list = S.d.clients.filter(function(c){ return !q || c.full_name.toLowerCase().indexOf(q) > -1 || c.email.toLowerCase().indexOf(q) > -1 || (qd && c.cpf.indexOf(qd) > -1); });
+  if (!list.length) return empty("Nenhum cliente encontrado.");
+  return list.map(function(c){ return '<div class="cl"><div class="nm"><b>' + esc(c.full_name) + ' ' + (c.blocked ? '<span class="badge b-no">Bloqueado</span>' : "") + '</b><span>' + cpfMask(c.cpf) + ' • ' + esc(phoneMask(c.phone)) + '</span><span>' + esc(c.email) + ' • desde ' + fD(c.created_at) + '</span></div><div class="pt">' + nf(c.points_balance) + '<small>PONTOS • ' + esc(c.referral_code) + '</small></div><div class="acts"><button class="btn sm" data-act="pts" data-id="' + c.id + '">Pontos</button><button class="btn sm dark" data-act="ext" data-id="' + c.id + '">Extrato</button><button class="btn sm dark" data-act="rpw" data-id="' + c.id + '">Senha</button><button class="btn sm ' + (c.blocked ? "dark" : "danger") + '" data-act="blk" data-id="' + c.id + '">' + (c.blocked ? "Desbloquear" : "Bloquear") + '</button></div></div>'; }).join("");
+}
+function auditRow(a){
+  var d = a.details || {}, who = S.d.map[a.actor_id], tgt = S.d.map[a.target_id], x = [];
+  if (tgt) x.push(esc(tgt.full_name)); if (d.name && !tgt) x.push(esc(d.name));
+  if (d.delta) x.push((d.delta > 0 ? "+" : "") + nf(d.delta) + " pts"); if (d.points && !d.delta) x.push(nf(d.points) + " pts");
+  if (d.reward) x.push(esc(d.reward)); if (d.title) x.push(esc(d.title)); if (d.reason) x.push("“" + esc(d.reason) + "”");
+  return '<div class="item"><div class="l"><b>' + (AL[a.action] || esc(a.action)) + '</b><span>' + x.join(" • ") + '</span></div><span style="font-size:12px;color:var(--muted);text-align:right">' + fDT(a.created_at) + '<br>' + esc(who ? who.full_name.split(" ")[0] : "Sistema") + '</span></div>';
+}
+function masterView(){
+  var d = S.d, pr = d.refs.filter(function(r){ return r.status === "pending"; }), pd = d.reds.filter(function(r){ return r.status === "pending"; });
+  var tabs = [["geral","Visão geral"],["clientes","Clientes"],["indicacoes","Indicações", pr.length || ""],["recompensas","Recompensas"],["validar","Validar QR", pd.length || ""],["auditoria","Auditoria"],["config","Configurações"]];
+  var b = "";
+  if (S.tab === "geral"){
+    var tot = d.clients.reduce(function(a, c){ return a + c.points_balance; }, 0);
+    b = '<h2 class="t">Visão geral</h2><p class="sub2">Resumo do Vértice Clube.</p><div class="grid g4"><div class="card stat"><b data-count="' + d.clients.length + '">0</b><span>Clientes</span></div><div class="card stat"><b data-count="' + tot + '">0</b><span>Pontos em circulação</span></div><div class="card stat"><b data-count="' + pr.length + '">0</b><span>Indicações pendentes</span></div><div class="card stat"><b data-count="' + pd.length + '">0</b><span>Resgates pendentes</span></div></div>' +
+      '<div class="grid g2" style="margin-top:14px"><div class="card"><h3>Ações rápidas</h3><div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start"><button class="btn" data-act="newclient">Cadastrar novo cliente</button><button class="btn dark" data-act="tab" data-t="validar">Validar QR Code</button><button class="btn dark" data-act="tab" data-t="indicacoes">Ver indicações</button></div></div><div class="card"><h3>Últimas operações</h3>' + (d.audit.length ? '<div class="list">' + d.audit.slice(0, 5).map(auditRow).join("") + '</div>' : empty("Sem registros.")) + '</div></div>';
+  }
+  if (S.tab === "clientes"){
+    b = '<h2 class="t">Clientes</h2><p class="sub2">Somente você cadastra clientes e movimenta pontos.</p><div class="toolbar"><input id="q" placeholder="Buscar por nome, CPF ou e-mail" value="' + esc(S.q) + '"><button class="btn" data-act="newclient">CADASTRAR NOVO CLIENTE</button></div><div class="card" id="clist">' + clientRows() + '</div>';
+  }
+  if (S.tab === "indicacoes"){
+    var hist = d.refs.filter(function(r){ return r.status !== "pending"; });
+    b = '<h2 class="t">Indicações</h2><p class="sub2">Cada indicação aprovada vale <b style="color:#fff">' + nf(d.settings.referral_points) + ' pontos</b> para quem indicou.</p><div class="card"><h3>Aguardando aprovação</h3>' + (pr.length ? '<div class="list">' + pr.map(function(r){ var c = d.map[r.referrer_id]; return '<div class="item"><div class="l"><b>' + esc(r.referred_name) + ' • ' + esc(phoneMask(r.referred_phone)) + '</b><span>Indicado por ' + esc(c ? c.full_name : "—") + ' • ' + fD(r.created_at) + '</span></div><div style="display:flex;gap:8px"><button class="btn sm" data-act="appr" data-id="' + r.id + '">Aprovar</button><button class="btn sm dark" data-act="rejr" data-id="' + r.id + '">Recusar</button></div></div>'; }).join("") + '</div>' : empty("Nenhuma indicação pendente.")) + '</div><div class="card" style="margin-top:14px"><h3>Histórico</h3>' + (hist.length ? '<div class="list">' + hist.map(function(r){ var c = d.map[r.referrer_id]; return '<div class="item"><div class="l"><b>' + esc(r.referred_name) + '</b><span>Por ' + esc(c ? c.full_name : "—") + ' • ' + fD(r.decided_at || r.created_at) + '</span></div>' + badge(r.status) + '</div>'; }).join("") + '</div>' : empty("Sem histórico.")) + '</div>';
+  }
+  if (S.tab === "recompensas"){
+    b = '<h2 class="t">Recompensas</h2><p class="sub2">Crie, edite e remova as recompensas que os clientes podem resgatar.</p><div class="toolbar"><button class="btn" data-act="newrw">Nova recompensa</button></div>' + (d.rewards.length ? '<div class="grid g3">' + d.rewards.map(function(r){ return '<div class="card rw"><h3>' + esc(r.title) + ' ' + (r.active ? "" : '<span class="badge b-gray">Inativa</span>') + '</h3><p>' + esc(r.description || "") + '</p><div class="cost">' + nf(r.points_cost) + '<span>PONTOS</span></div><div style="display:flex;gap:8px"><button class="btn sm dark" data-act="editrw" data-id="' + r.id + '">Editar</button><button class="btn sm danger" data-act="delrw" data-id="' + r.id + '">Excluir</button></div></div>'; }).join("") + '</div>' : '<div class="card">' + empty("Nenhuma recompensa criada.") + '</div>');
+  }
+  if (S.tab === "validar"){
+    var f = S.found, fc = f && d.map[f.client_id];
+    b = '<h2 class="t">Validar QR Code</h2><p class="sub2">Escaneie o QR Code do cliente ou digite o código. Os pontos são descontados só depois da sua confirmação.</p><div class="grid g2"><div class="card"><h3>Escanear</h3><div id="scanbox" hidden class="scan"><video id="vid" muted playsinline></video><canvas id="cv" hidden></canvas></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px"><button class="btn" data-act="scan">Abrir câmera</button><button class="btn dark" data-act="stopscan">Parar</button></div><form data-form="manual" style="margin-top:20px"><label>Ou digite o código<input name="t" placeholder="Cole o código do QR" autocomplete="off"></label><button class="btn sm dark" type="submit">Buscar</button></form>' +
+      (f ? '<div class="res ' + (f.status === "pending" ? "" : "warn") + '"><b style="color:#fff">' + esc(f.reward_title) + '</b><br><span style="color:var(--muted);font-size:14px">' + esc(fc ? fc.full_name : "Cliente") + ' • ' + nf(f.points_cost) + ' pontos • ' + badge(f.status) + '</span>' + (f.status === "pending" ? '<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-act="confirmval" data-t="' + esc(f.token) + '">Confirmar e descontar pontos</button><button class="btn dark" data-act="clearfound">Cancelar</button></div>' : '<div style="margin-top:10px;font-size:13.5px;color:var(--muted)">Este QR Code não pode mais ser validado.</div>') + '</div>' : "") + '</div>' +
+      '<div class="card"><h3>Resgates aguardando validação</h3>' + (pd.length ? '<div class="list">' + pd.map(function(r){ var c = d.map[r.client_id]; return '<div class="item"><div class="l"><b>' + esc(r.reward_title) + '</b><span>' + esc(c ? c.full_name : "—") + ' • ' + nf(r.points_cost) + ' pts • ' + fDT(r.created_at) + '</span></div><div style="display:flex;gap:6px"><button class="btn sm" data-act="valid" data-t="' + esc(r.token) + '">Validar</button><button class="btn sm dark" data-act="cancelred" data-id="' + r.id + '">Cancelar</button></div></div>'; }).join("") + '</div>' : empty("Nenhum resgate pendente.")) + '</div></div>';
+  }
+  if (S.tab === "auditoria"){
+    b = '<h2 class="t">Auditoria</h2><p class="sub2">Registro de todas as operações administrativas. Ninguém consegue editar ou apagar.</p><div class="card">' + (d.audit.length ? '<div class="list">' + d.audit.map(auditRow).join("") + '</div>' : empty("Sem registros.")) + '</div>';
+  }
+  if (S.tab === "config"){
+    b = '<h2 class="t">Configurações</h2><p class="sub2">Regras gerais do programa.</p><div class="grid g2"><div class="card"><h3>Pontos por indicação aprovada</h3><form data-form="cfg"><label>Pontos<input name="v" type="number" min="0" max="100000" value="' + d.settings.referral_points + '" required></label><button class="btn sm" type="submit">Salvar</button></form></div><div class="card"><h3>Sua conta Master</h3><form data-form="newpw"><label>Nova senha<input name="pw" type="password" minlength="8" autocomplete="new-password" required placeholder="Mínimo de 8 caracteres"></label><label>Repita a nova senha<input name="pw2" type="password" minlength="8" autocomplete="new-password" required></label><button class="btn sm" type="submit">Alterar minha senha</button></form></div></div>';
+  }
+  return shell(tabs, b);
+}
+
+
+/* ====== guia de instalação (aparece só enquanto CFG estiver vazio) ====== */
+function codeBlock(id, titulo){
+  var t = (document.getElementById(id) || {}).textContent || "";
+  return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0 8px"><b style="color:#fff;font-size:14px">' + titulo + '</b><button class="btn sm dark" data-act="copycode" data-id="' + id + '">Copiar código</button></div><pre class="code-pre">' + esc(t) + '</pre>';
+}
+function step(n, titulo, corpo){ return '<div class="card gstep"><div class="gn">' + n + '</div><div style="min-width:0;flex:1"><h3 style="font-size:17px;margin:0 0 8px">' + titulo + '</h3>' + corpo + '</div></div>'; }
+function guideView(){
+  var p = function(t){ return '<p style="margin:0 0 10px;color:#c9c9d1;font-size:14.5px">' + t + '</p>'; };
+  return '<header class="top"><div class="wrap"><div class="brand"><img src="' + ICON + '" alt=""><div><b>VÉRTICE</b><small>CLUBE</small></div></div></div></header><div class="wrap"><main class="app">' +
+    '<h2 class="t">Guia de instalação</h2><p class="sub2">Tudo o que você precisa está neste arquivo: siga os passos na ordem. Esta tela some sozinha assim que o arquivo for conectado ao Supabase (passo 6) e o login aparece no lugar.</p><div class="grid">' +
+    step(1, "Criar o projeto e fechar o cadastro público", p("Crie um projeto grátis em <b>supabase.com</b> e guarde a senha do banco em um gerenciador de senhas.") + p("Depois vá em <b>Authentication → Sign In / Providers → Email</b> e <b>desative “Allow new users to sign up”</b>. Assim ninguém consegue criar conta por conta própria.")) +
+    step(2, "Criar o banco e as regras de segurança", p("Abra o <b>SQL Editor</b>, cole o código abaixo e clique em <b>Run</b>. Faça isso uma única vez.") + codeBlock("c-schema", "Banco de dados + segurança (RLS)")) +
+    step(3, "Criar o Master (você, proprietário)", p("Em <b>Authentication → Users → Add user</b>, informe o seu e-mail e uma <b>senha forte</b> (marque <i>Auto Confirm User</i>). A senha é digitada só ali, no painel do Supabase.") + p("Depois, no <b>SQL Editor</b>, cole o modelo abaixo, troque os 4 valores (nome, CPF só com números, telefone e e-mail) e rode. <b>Não salve esse código preenchido em nenhum arquivo nem envie ao GitHub.</b> Seu login será o CPF + a senha que você criou.") + codeBlock("c-master", "Modelo para criar o Master")) +
+    step(4, "Função de login por CPF", p("Vá em <b>Edge Functions → Deploy a new function → Via Editor</b>. Dê exatamente o nome <b>cpf-login</b>, cole o código e clique em <b>Deploy</b>. Depois, nas configurações dessa função, <b>desligue</b> a opção de verificar JWT (o cliente ainda não está logado quando chama essa função).") + codeBlock("c-login", "Função cpf-login")) +
+    step(5, "Função de cadastro de clientes", p("Crie outra função, com o nome exato <b>admin-api</b>, e cole o código. Aqui a verificação de JWT <b>fica ligada</b>. Só o Master consegue usar essa função: ela confere no servidor quem está chamando.") + codeBlock("c-admin", "Função admin-api")) +
+    step(6, "Conectar este arquivo ao seu Supabase", p("Em <b>Project Settings → API</b>, copie a <b>Project URL</b> e a chave <b>anon public</b> (a chave pública, nunca a service_role). Cole abaixo para gerar a linha de configuração:") +
+      '<form data-form="cfgline"><label>Project URL<input name="u" placeholder="https://xxxx.supabase.co" autocomplete="off"></label><label>Chave anon public<input name="k" placeholder="eyJ..." autocomplete="off"></label><button class="btn sm" type="submit">Gerar linha</button></form><div id="cfgout"></div>' +
+      p("Abra este arquivo em um editor de texto, procure a linha <b>var CFG = { url: \"\", anon: \"\" };</b> (no começo do script) e troque pela linha gerada. Depois, em <b>Authentication → URL Configuration</b>, coloque o endereço do seu site em <i>Site URL</i> e em <i>Redirect URLs</i> (necessário para “Esqueci minha senha”).")) +
+    step(7, "Publicar e testar", p("Envie este arquivo para o GitHub com o nome <b>index.html</b> e ative <b>Settings → Pages</b>. Depois faça os testes: cadastre um cliente de teste, entre com ele, indique alguém, resgate um prêmio e valide o QR no painel Master. Confirme também que o cliente <b>não</b> consegue abrir o painel Master.")) +
+    '</div></main></div>';
+}
+
+/* ====== render ====== */
+function render(){
+  var root = $("#app");
+  if (!READY) root.innerHTML = guideView();
+  else if (S.recovery) root.innerHTML = recoveryView();
+  else if (!S.me) root.innerHTML = loginView();
+  else { if (!S.tab) S.tab = S.me.role === "master" ? "geral" : "inicio"; root.innerHTML = S.me.role === "master" ? masterView() : clientView(); }
+  document.querySelectorAll("[data-count]").forEach(function(el){
+    var to = +el.getAttribute("data-count"), t0 = null;
+    function st(ts){ if (!t0) t0 = ts; var p = Math.min((ts - t0) / 900, 1); el.textContent = nf(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(st); }
+    requestAnimationFrame(st);
+  });
+  var qi = $("#q"); if (qi){ qi.addEventListener("input", function(){ S.q = qi.value; $("#clist").innerHTML = clientRows(); }); }
+}
+
+/* ====== QR ====== */
+function qrSvg(text){
+  if (!window.qrcode) return '<div class="tok">' + esc(text) + '</div>';
+  var q = window.qrcode(0, "M"); q.addData(text); q.make(); return q.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
+}
+function showQR(r){
+  openModal('<h3>' + esc(r.reward_title) + '</h3><div class="qrbox">' + qrSvg("VC1:" + r.token) + '</div><p class="tok">' + esc(r.token.slice(0, 8).toUpperCase()) + '…</p><p style="text-align:center;color:var(--muted);font-size:14px;margin:14px 0 0">Mostre este QR Code à Vértice. ' + nf(r.points_cost) + ' pontos serão descontados na validação.</p><div class="row" style="margin-top:16px"><button class="btn dark" data-act="copy" data-v="VC1:' + esc(r.token) + '">Copiar código</button><button class="btn" data-act="close">Fechar</button></div>');
+}
+var scan = { stream: null, raf: 0 };
+function stopScan(){ if (scan.raf) cancelAnimationFrame(scan.raf); scan.raf = 0; if (scan.stream){ scan.stream.getTracks().forEach(function(t){ t.stop(); }); scan.stream = null; } var b = $("#scanbox"); if (b) b.hidden = true; }
+async function startScan(){
+  try {
+    if (!window.jsQR) throw new Error("Leitor de QR indisponível. Digite o código manualmente.");
+    scan.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+    var v = $("#vid"); v.srcObject = scan.stream; await v.play(); $("#scanbox").hidden = false; loop();
+  } catch (e){ stopScan(); toast(e && e.name === "NotAllowedError" ? "Permita o acesso à câmera para escanear." : msgOf(e), true); }
+}
+function loop(){
+  if (!scan.stream) return;
+  var v = $("#vid"), c = $("#cv");
+  if (v && c && v.readyState === v.HAVE_ENOUGH_DATA){
+    c.width = v.videoWidth; c.height = v.videoHeight; var x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(v, 0, 0);
+    var im = x.getImageData(0, 0, c.width, c.height), r = window.jsQR(im.data, im.width, im.height);
+    if (r && r.data){ stopScan(); lookup(r.data); return; }
+  }
+  scan.raf = requestAnimationFrame(loop);
+}
+function lookup(text){
+  var t = String(text || "").trim().replace(/^VC1:/i, "");
+  var r = S.d.reds.filter(function(x){ return x.token === t || x.token.slice(0, 8).toUpperCase() === t.toUpperCase(); })[0];
+  if (!r){ S.found = null; render(); toast("QR Code inválido ou não encontrado.", true); return; }
+  S.found = r; render();
+}
+
+/* ====== modais do Master ====== */
+function newClientModal(){
+  openModal('<h3>Cadastrar novo cliente</h3><form data-form="newclient"><label>Nome completo<input name="name" required minlength="3" maxlength="120" autocomplete="off"></label><label>CPF<input name="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required autocomplete="off"></label><label>E-mail<input name="email" type="email" required autocomplete="off"></label><label>Telefone<input name="phone" inputmode="tel" placeholder="(11) 90000-0000" required autocomplete="off"></label><label>Senha inicial<div class="pw"><input name="pw" type="text" minlength="8" required autocomplete="off" value="' + genPw() + '"><button type="button" data-act="genpw">Gerar</button></div></label><label>Data de cadastro<input value="' + new Date().toLocaleDateString("pt-BR") + '" disabled></label><div class="row"><button class="btn" type="submit">Cadastrar cliente</button></div></form>');
+}
+function credModal(c){
+  var link = location.origin + location.pathname;
+  var txt = "Olá, " + c.name.split(" ")[0] + "! Seu acesso ao Vértice Clube está pronto.\nEndereço: " + link + "\nCPF: " + cpfMask(c.cpf) + "\nSenha inicial: " + c.pw + "\nVocê pode trocar a senha no seu perfil.";
+  var wa = "https://wa.me/55" + dig(c.phone) + "?text=" + encodeURIComponent(txt);
+  openModal('<h3>Cliente cadastrado!</h3><p style="color:var(--muted);font-size:14px;margin:0 0 12px">Envie estas credenciais ao cliente. A senha aparece só agora.</p><div class="cred">' + esc(txt) + '</div><div class="row"><button class="btn dark" data-act="copy" data-v="' + esc(txt) + '">Copiar</button><a class="btn" href="' + esc(wa) + '" target="_blank" rel="noopener">Enviar por WhatsApp</a></div><p style="margin:14px 0 0;font-size:13px;color:var(--muted)">Código de indicação do cliente: <b style="color:#fff">' + esc(c.code) + '</b> • Saldo inicial: 0 pontos.</p>');
+}
+function rewardModal(r){
+  r = r || { title: "", description: "", points_cost: 100, active: true };
+  openModal('<h3>' + (r.id ? "Editar recompensa" : "Nova recompensa") + '</h3><form data-form="reward" data-id="' + esc(r.id || "") + '"><label>Título<input name="title" required minlength="2" maxlength="80" value="' + esc(r.title) + '"></label><label>Descrição<textarea name="desc" rows="3" maxlength="300">' + esc(r.description || "") + '</textarea></label><label>Custo em pontos<input name="cost" type="number" min="1" max="1000000" required value="' + esc(r.points_cost) + '"></label><label>Situação<select name="active"><option value="1"' + (r.active ? " selected" : "") + '>Ativa (visível aos clientes)</option><option value="0"' + (r.active ? "" : " selected") + '>Inativa</option></select></label><div class="row"><button class="btn" type="submit">Salvar</button></div></form>');
+}
+
+/* ====== eventos ====== */
+var H = {
+  close: closeModal,
+  copycode: function(a){ copy((document.getElementById(a.dataset.id) || {}).textContent || ""); },
+  togglepw: function(a){ var i = a.parentNode.querySelector("input"); i.type = i.type === "password" ? "text" : "password"; a.textContent = i.type === "password" ? "Ver" : "Ocultar"; },
+  genpw: function(a){ a.parentNode.querySelector("input").value = genPw(); },
+  copy: function(a){ copy(a.dataset.v); },
+  tab: function(a){ stopScan(); S.tab = a.dataset.t; render(); window.scrollTo(0, 0); },
+  logout: async function(){ stopScan(); await api.logout(); S.me = null; S.tab = ""; S.d = {}; S.q = ""; S.found = null; render(); },
+  forgot: function(){ openModal('<h3>Recuperar senha</h3><p style="color:var(--muted);font-size:14px;margin:0 0 16px">Informe o e-mail cadastrado. Se ele existir, enviaremos um link seguro para criar uma nova senha.</p><form data-form="forgot"><label>E-mail<input name="e" type="email" required></label><div class="row"><button class="btn" type="submit">Enviar link</button></div></form>'); },
+  redeem: function(a){ var r = S.d.rewards.filter(function(x){ return x.id === a.dataset.id; })[0]; if (!r) return; openModal('<h3>Resgatar “' + esc(r.title) + '”?</h3><p style="color:var(--muted);margin:0 0 16px">Custo: <b style="color:#fff">' + nf(r.points_cost) + ' pontos</b>. Vamos gerar um QR Code para você apresentar à Vértice. Os pontos só saem do seu saldo quando o resgate for validado.</p><div class="row"><button class="btn" data-act="doredeem" data-id="' + esc(r.id) + '">Gerar QR Code</button><button class="btn dark" data-act="close">Voltar</button></div>'); },
+  doredeem: async function(a){ a.disabled = true; try { var r = await run(function(){ return api.request(a.dataset.id); }); await refresh(); showQR(r); } catch (e){ a.disabled = false; } },
+  showqr: function(a){ var r = S.d.reds.filter(function(x){ return x.id === a.dataset.id; })[0]; if (r) showQR(r); },
+  cancelred: async function(a){ if (!confirm("Cancelar este resgate?")) return; try { await run(function(){ return api.cancelRed(a.dataset.id); }, "Resgate cancelado"); await refresh(); } catch (e){} },
+  newclient: newClientModal,
+  pts: function(a){ var c = S.d.map[a.dataset.id]; openModal('<h3>Pontos • ' + esc(c.full_name) + '</h3><p style="color:var(--muted);margin:0 0 14px">Saldo atual: <b style="color:#fff">' + nf(c.points_balance) + '</b>. Use número negativo para retirar pontos.</p><form data-form="pts" data-id="' + c.id + '"><label>Quantidade (+ ou −)<input name="d" type="number" step="1" required placeholder="Ex.: 100 ou -50"></label><label>Motivo<input name="r" required minlength="3" maxlength="140" placeholder="Ex.: Compra em março"></label><div class="row"><button class="btn" type="submit">Aplicar</button></div></form>'); },
+  ext: async function(a){ var c = S.d.map[a.dataset.id]; try { var tx = await api.tx(c.id); openModal('<h3>Extrato • ' + esc(c.full_name) + '</h3>' + (tx.length ? '<div class="list">' + tx.map(txRow).join("") + '</div>' : empty("Sem movimentações.")) + '<div class="row" style="margin-top:14px"><button class="btn dark" data-act="close">Fechar</button></div>'); } catch (e){ toast(msgOf(e), true); } },
+  rpw: function(a){ var c = S.d.map[a.dataset.id]; openModal('<h3>Redefinir senha • ' + esc(c.full_name) + '</h3><form data-form="rpw" data-id="' + c.id + '"><label>Nova senha<div class="pw"><input name="pw" type="text" minlength="8" required autocomplete="off" value="' + genPw() + '"><button type="button" data-act="genpw">Gerar</button></div></label><div class="row"><button class="btn" type="submit">Redefinir</button></div></form>'); },
+  blk: async function(a){ var c = S.d.map[a.dataset.id]; if (!confirm((c.blocked ? "Desbloquear " : "Bloquear ") + c.full_name + "?")) return; try { await run(function(){ return api.setBlocked(c.id, !c.blocked); }, c.blocked ? "Cliente desbloqueado" : "Cliente bloqueado"); await refresh(); } catch (e){} },
+  appr: async function(a){ try { var p = await run(function(){ return api.approveRef(a.dataset.id); }); toast("Indicação aprovada (+" + nf(p) + " pontos)"); await refresh(); } catch (e){} },
+  rejr: async function(a){ if (!confirm("Recusar esta indicação?")) return; try { await run(function(){ return api.rejectRef(a.dataset.id); }, "Indicação recusada"); await refresh(); } catch (e){} },
+  newrw: function(){ rewardModal(); },
+  editrw: function(a){ rewardModal(S.d.rewards.filter(function(x){ return x.id === a.dataset.id; })[0]); },
+  delrw: async function(a){ if (!confirm("Excluir esta recompensa? Esta ação não pode ser desfeita.")) return; try { await run(function(){ return api.delReward(a.dataset.id); }, "Recompensa excluída"); await refresh(); } catch (e){} },
+  scan: startScan, stopscan: stopScan,
+  clearfound: function(){ S.found = null; render(); },
+  valid: function(a){ lookup(a.dataset.t); window.scrollTo(0, 0); },
+  confirmval: async function(a){ a.disabled = true; try { var r = await run(function(){ return api.validate(a.dataset.t); }); toast("Resgate validado: " + r.reward + " (−" + nf(r.points) + " pts)"); S.found = null; await refresh(); } catch (e){ a.disabled = false; } }
+};
+document.addEventListener("click", function(e){
+  var a = e.target.closest("[data-act]");
+  if (a && H[a.dataset.act]){ e.preventDefault(); H[a.dataset.act](a); return; }
+  if (e.target.id === "modal") closeModal();
+});
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !$("#modal").hidden) closeModal(); });
+document.addEventListener("input", function(e){
+  var n = e.target.name, f = e.target.form && e.target.form.getAttribute("data-form");
+  if (n === "cpf" && (f === "login" || f === "newclient")) e.target.value = cpfMask(e.target.value);
+  if ((n === "phone" || n === "p") && e.target.inputMode === "tel") e.target.value = phoneMask(e.target.value);
+});
+document.addEventListener("submit", async function(e){
+  var f = e.target, k = f.getAttribute("data-form"); if (!k) return; e.preventDefault();
+  var btn = f.querySelector('[type="submit"]'); if (btn) btn.disabled = true;
+  try {
+    if (k === "login"){
+      if (!cpfOk(f.elements["cpf"].value)) throw new Error("Informe um CPF válido");
+      await api.login(f.elements["cpf"].value, f.elements["pw"].value); S.tab = ""; await refresh(); return;
+    }
+    if (k === "forgot"){ await api.recover(f.elements["e"].value.trim()); closeModal(); toast("Se o e-mail estiver cadastrado, você receberá o link em instantes."); return; }
+    if (k === "recovery" || k === "newpw"){
+      if (f.elements["pw"].value.length < 8) throw new Error("A senha precisa ter ao menos 8 caracteres");
+      if (f.elements["pw"].value !== f.elements["pw2"].value) throw new Error("As senhas não conferem");
+      await api.changePassword(f.elements["pw"].value); S.recovery = false; f.reset(); toast("Senha alterada com sucesso");
+      if (k === "recovery"){ await refresh(); } return;
+    }
+    if (k === "phone"){ await run(function(){ return api.updatePhone(f.elements["p"].value); }, "Telefone atualizado"); await refresh(); return; }
+    if (k === "referral"){ await run(function(){ return api.submitRef(f.elements["n"].value, f.elements["p"].value); }, "Indicação enviada! Aguarde a aprovação."); f.reset(); await refresh(); return; }
+    if (k === "newclient"){
+      if (!cpfOk(f.elements["cpf"].value)) throw new Error("CPF inválido");
+      var p = { full_name: f.elements["name"].value.trim(), cpf: dig(f.elements["cpf"].value), email: f.elements["email"].value.trim().toLowerCase(), phone: dig(f.elements["phone"].value), password: f.elements["pw"].value };
+      var r = await api.createClient(p); await refresh(); credModal({ name: p.full_name, cpf: p.cpf, phone: p.phone, pw: p.password, code: r.referral_code }); return;
+    }
+    if (k === "pts"){ var v = parseInt(f.elements["d"].value, 10); await api.adjust(f.getAttribute("data-id"), v, f.elements["r"].value); closeModal(); toast("Pontos atualizados"); await refresh(); return; }
+    if (k === "rpw"){ await api.resetPassword(f.getAttribute("data-id"), f.elements["pw"].value); closeModal(); toast("Senha redefinida. Avise o cliente."); await refresh(); return; }
+    if (k === "reward"){ await api.saveReward({ id: f.getAttribute("data-id") || null, title: f.elements["title"].value.trim(), description: f.elements["desc"].value.trim(), points_cost: parseInt(f.elements["cost"].value, 10), active: f.elements["active"].value === "1" }); closeModal(); toast("Recompensa salva"); await refresh(); return; }
+    if (k === "cfgline"){ var u = f.elements["u"].value.trim().replace(/\/+$/, ""), kk = f.elements["k"].value.trim(); if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(u)) throw new Error("A Project URL deve ter o formato https://xxxx.supabase.co"); if (kk.length < 40) throw new Error("Cole a chave anon public completa"); var line = 'var CFG = { url: "' + u + '", anon: "' + kk + '" };'; $("#cfgout").innerHTML = '<div class="cred" style="margin-top:14px">' + esc(line) + '</div><button class="btn sm dark" type="button" data-act="copy" data-v="' + esc(line) + '">Copiar linha</button>'; return; }
+    if (k === "manual"){ lookup(f.elements["t"].value); return; }
+    if (k === "cfg"){ await api.setReferralPoints(parseInt(f.elements["v"].value, 10)); toast("Configuração salva"); await refresh(); return; }
+  } catch (err){ toast(msgOf(err), true); }
+  finally { if (btn) btn.disabled = false; }
+});
+
+/* ====== início ====== */
+(async function(){
+  if (!READY){ render(); return; }
+  try { S.me = await api.me(); if (S.me) await loadData(); } catch (e){ S.me = null; }
+  render();
+})();
+})();
+
+</script>
+</body>
+</html>
